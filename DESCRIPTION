@@ -1,0 +1,15 @@
+Package: eaaaR
+Title: Corporate Themes for Business Academy Aarhus in R 
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Aaron",
+           family = "Saunders",
+           role = c("aut", "cre"),
+           email = "amsa@eaaa.dk")
+Description: Implements themes for ggplot and RMarkdown document templates using corporate colors and logos.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Imports: 
+    ggplot2
