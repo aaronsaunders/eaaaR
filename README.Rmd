@@ -1,0 +1,14 @@
+# eaaaR: EAAA color schemes for ggplot and RMarkdown
+
+## EAAA colored theme for ggplot2
+
+Based on code from https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2
+
+
+
+
+## EAAA report templates in RMarkdown
+
+http://freerangestats.info/blog/2017/09/09/rmarkdown
+
+https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html#overview
