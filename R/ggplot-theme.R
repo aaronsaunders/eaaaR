@@ -3,21 +3,26 @@
 
 # eaaa corporate colors
 eaaa_colors <- c(
-  `pink`         = "#DABBBE",
-  `red`          = "#AA272F",
-  `light green`  = "#CED64B",
-  `green`        = "#2C5E4F",
-  `light blue`   = "#83AFB4",
-  `blue`         = "#0083A9",
-  `light purple` = "#E17000",
-  `purple`       = "#5A447A",
-  `yellow`       = "#EBDD9C",
-  `orange`       = "#E17000",
-  `light brown`  = "#B7621B",
-  `brown`        = "#5D3526",
-  `light grey`   = "#E0E6E6",
-  `dark grey`    = "#818A8F")
-
+  "pink"         = rgb(218, 187, 190, max = 255),
+  "red"          = rgb(170, 39, 47, max = 255),
+  "blue"         = rgb(0, 131, 169, max = 255),
+  "dark blue"    = rgb(0, 33, 71, max = 255),
+  "light green"  = rgb(157, 188, 176, max = 255),
+  "green"        = rgb(44, 94, 79, max = 255),
+  "yellow"       = rgb(235, 221, 156, max = 255),
+  "orange"       = rgb(225, 112, 0, max = 255),
+  "purple"       = rgb(90, 68, 122, max = 255),
+  "dark purple"  = rgb(83, 46, 96, max = 255),
+  "grey"         = rgb(68, 105, 125, max = 255),
+  "dark grey"    = rgb(129, 138, 143, max = 255),
+  "light brown"  = rgb(183, 98, 27, max = 255),
+  "dark brown"   = rgb(93, 53, 38, max = 255),
+  "olive"        = rgb(206, 214, 75, max = 255),
+  "light blue"   = rgb(63, 207, 21, max = 255),
+  "light grey"   = rgb(224, 230, 230, max = 255),
+  "light blue"   = rgb(131, 175, 180, max = 255),
+  "dark red"     = rgb(151, 35, 63, max = 255)
+  )
 
 #' Function to extract eaaa colors as hex codes
 #'
@@ -34,7 +39,7 @@ eaaa_cols <- function(...) {
 
 
 eaaa_palettes <- list(
-  `main`  = eaaa_cols("red", "blue", "green"),
+  `main`  = eaaa_cols("red", "blue", "light green"),
 
   `cool`  = eaaa_cols("blue", "green"),
 
