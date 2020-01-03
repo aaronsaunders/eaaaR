@@ -15,6 +15,78 @@ devtools::install_github("aaronsaunders/eaaaR")
 
 Based on code from https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2
 
+Load the required libraries.
+
+```{r}
+library(eaaaR)
+library(ggplot2)
+
+theme_set(theme_minimal())
+```
+
+The `eaaa_cols()` function returns colors designated in the [EAAA corporate design manual](https://update.eaaa.dk/afdeling/kommunikation/brevskabeloner-og-logo/Sider/design.aspx).
+
+![EAAA color wheel](img/EAAA-color-wheel.png)
+![EAAA color palette](img/EAAA-color-palette.png)
+
+```{r}
+eaaa_cols()
+```
+
+
+```{r}
+eaaa_cols("red")
+
+eaaa_cols("red", "blue")
+
+eaaa_cols("blue", "red")
+```
+
+```{r}
+ggplot(mtcars, aes(hp, mpg)) +
+  geom_point(color = eaaa_cols(),
+             size = 4, alpha = .8)
+```
+
+The package also implements color palettes `eaaa_pal()` that can be called. 
+
+```{r}
+eaaa_pal("cool")
+#> function (n)
+#> {
+#>     x <- ramp(seq.int(0, 1, length.out = n))
+#>     if (ncol(x) == 4L)
+#>         rgb(x[, 1L], x[, 2L], x[, 3L], x[, 4L], maxColorValue = 255)
+#>     else rgb(x[, 1L], x[, 2L], x[, 3L], maxColorValue = 255)
+#> }
+#> <bytecode: 0x7fd7e497ba38>
+#> <environment: 0x7fd7e497af78>
+
+eaaa_pal("cool")(10)
+#>  [1] "#00AEDB" "#00AECC" "#00AEBE" "#00AFAF" "#00AFA1" "#00AF92" "#00B084"
+#>  [8] "#00B075" "#00B067" "#00B159"
+
+```
+
+Most commonly the user will just call one of the scales `scale_*_eaaa()`
+
+```{r}
+# Color by discrete variable using default palette
+ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
+  geom_point(size = 4) +
+  scale_color_eaaa()
+
+# Color by numeric variable with cool palette
+ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
+  geom_point(size = 4, alpha = .6) +
+  scale_color_eaaa(discrete = FALSE, palette = "cool")
+
+# Fill by discrete variable with different palette + remove legend (guide)
+ggplot(mpg, aes(manufacturer, fill = manufacturer)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_eaaa(palette = "mixed", guide = "none")
+```
 
 
 ## EAAA report templates in RMarkdown
