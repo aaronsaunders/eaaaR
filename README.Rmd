@@ -18,10 +18,10 @@ Based on code from https://drsimonj.svbtle.com/creating-corporate-colour-palette
 Load the required libraries.
 
 ```{r}
-library(eaaaR)
 library(ggplot2)
+library(eaaaR)
 
-theme_set(theme_minimal())
+theme_set(theme_classic())
 ```
 
 The `eaaa_cols()` function returns colors designated in the [EAAA corporate design manual](https://update.eaaa.dk/afdeling/kommunikation/brevskabeloner-og-logo/Sider/design.aspx).
@@ -36,8 +36,7 @@ Most commonly the user will just call one of the scales `scale_*_eaaa()`
 # Color by discrete variable using default palette
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
   geom_point(size = 4) +
-  scale_color_eaaa()
-```
+  scale_color_eaaa()```
 ```{r}
 # Color by numeric variable with cool palette
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
@@ -47,16 +46,17 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
 
 ```{r}
 # Fill by discrete variable with different palette + remove legend (guide)
-ggplot(mpg, aes(manufacturer, fill = manufacturer)) +
+ggplot(mtcars, aes(manufacturer, fill = manufacturer)) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_eaaa(palette = "mixed", guide = "none")
+  scale_fill_eaaa(palette = "main", guide = "none")
 ```
 
 You can get access to the colors directly by calling `eaaa_cols()`
 
 ```{r}
-eaaa_cols()
+cols <- eaaa_pal()
+cols
 ```
 
 
@@ -66,6 +66,14 @@ ggplot(mtcars, aes(hp, mpg)) +
              size = 4, alpha = .8)
 ```
 
+```{r}
+p <- ggplot(mtcars, aes(mpg, wt)) +
+  geom_point(aes(colour = factor(cyl)), size = 3)
+
+cols <- c("8" = "red", "4" = "blue", "6" = "darkgreen", "10" = "orange")
+p + scale_color_manual(values = as.vector(eaaa_pal()), 
+                       breaks= c("red", "blue", "green"))
+```
 
 ## EAAA report templates in RMarkdown
 

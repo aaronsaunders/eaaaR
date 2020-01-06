@@ -21,6 +21,9 @@
 .Rproj.user/
 *.Rproj
 
+# cran
+.Rbuildignore
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
