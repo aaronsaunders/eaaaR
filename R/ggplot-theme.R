@@ -39,18 +39,14 @@ eaaa_cols <- function(...) {
 
 
 eaaa_palettes <- list(
-  `qual`  = eaaa_cols("red", "blue", "green", "purple", "orange", "yellow",
-                      "dark brown", "pink", "grey"),
-  `paired`  = eaaa_cols("pink", "red",
-                      "blue", "dark blue",
-                      "light green", "green",
-                      "purple", "dark purple",
-                      "yellow", "orange",
-                      "light brown", "dark brown",
-                      "grey", "dark grey"),
-  `blues` = eaaa_cols("blue", "dark blue"),
+  `main`  = eaaa_cols("red", "blue", "light green"),
+
   `cool`  = eaaa_cols("blue", "green"),
+
   `hot`   = eaaa_cols("yellow", "orange", "red"),
+
+  `mixed` = eaaa_cols("blue", "green", "yellow", "orange", "red"),
+
   `grey`  = eaaa_cols("light grey", "dark grey")
 )
 
@@ -61,14 +57,12 @@ eaaa_palettes <- list(
 #' @param reverse Boolean indicating whether the palette should be reversed
 #' @param ... Additional arguments to pass to colorRampPalette()
 #'
-eaaa_pal <- function(palette = "qual", discrete = TRUE, reverse = FALSE, ...) {
+eaaa_pal <- function(palette = "main", reverse = TRUE, ...) {
   pal <- eaaa_palettes[[palette]]
 
   if (reverse) pal <- rev(pal)
-  if (!discrete) {
-    pal <- colorRampPalette(pal, ...)
-    }
-  pal
+
+  colorRampPalette(pal, ...)
 }
 
 
@@ -80,7 +74,7 @@ eaaa_pal <- function(palette = "qual", discrete = TRUE, reverse = FALSE, ...) {
 #' @param ... Additional arguments passed to discrete_scale() or
 #'            scale_color_gradientn(), used respectively when discrete is TRUE or FALSE
 #'
-scale_color_eaaa <- function(palette = "qual", discrete = TRUE, reverse = TRUE, ...) {
+scale_color_eaaa <- function(palette = "main", discrete = TRUE, reverse = TRUE, ...) {
   pal <- eaaa_pal(palette = palette, reverse = reverse)
 
   if (discrete) {
@@ -98,7 +92,7 @@ scale_color_eaaa <- function(palette = "qual", discrete = TRUE, reverse = TRUE, 
 #' @param ... Additional arguments passed to discrete_scale() or
 #'            scale_fill_gradientn(), used respectively when discrete is TRUE or FALSE
 #'
-scale_fill_eaaa <- function(palette = "qual", discrete = TRUE, reverse = TRUE, ...) {
+scale_fill_eaaa <- function(palette = "main", discrete = TRUE, reverse = TRUE, ...) {
   pal <- eaaa_pal(palette = palette, reverse = reverse)
 
   if (discrete) {
