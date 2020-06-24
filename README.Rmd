@@ -1,3 +1,7 @@
+---
+output: rmarkdown::github_document
+---
+
 # eaaaR: EAAA color schemes for ggplot and RMarkdown
 
 ## Installation
@@ -36,7 +40,11 @@ Most commonly the user will just call one of the scales `scale_*_eaaa()`
 # Color by discrete variable using default palette
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
   geom_point(size = 4) +
-  scale_color_eaaa()```
+  scale_color_eaaa()
+```
+
+
+
 ```{r}
 # Color by numeric variable with cool palette
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
@@ -46,7 +54,7 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Sepal.Length)) +
 
 ```{r}
 # Fill by discrete variable with different palette + remove legend (guide)
-ggplot(mtcars, aes(manufacturer, fill = manufacturer)) +
+ggplot(iris[runif(n = 15, min = 1, max = 150), ], aes(Species, fill = Species)) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_eaaa(palette = "main", guide = "none")
@@ -55,8 +63,7 @@ ggplot(mtcars, aes(manufacturer, fill = manufacturer)) +
 You can get access to the colors directly by calling `eaaa_cols()`
 
 ```{r}
-cols <- eaaa_pal()
-cols
+eaaa_cols()
 ```
 
 
@@ -66,17 +73,4 @@ ggplot(mtcars, aes(hp, mpg)) +
              size = 4, alpha = .8)
 ```
 
-```{r}
-p <- ggplot(mtcars, aes(mpg, wt)) +
-  geom_point(aes(colour = factor(cyl)), size = 3)
 
-cols <- c("8" = "red", "4" = "blue", "6" = "darkgreen", "10" = "orange")
-p + scale_color_manual(values = as.vector(eaaa_pal()), 
-                       breaks= c("red", "blue", "green"))
-```
-
-## EAAA report templates in RMarkdown
-
-http://freerangestats.info/blog/2017/09/09/rmarkdown
-
-https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html#overview
